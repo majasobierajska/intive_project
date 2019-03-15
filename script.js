@@ -1,30 +1,32 @@
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-   async function demo() {
+
+   function demo() {
     fetch ("http://api.open-notify.org/iss-now.json")
     .then(response => response.json())
     .then(json => json.iss_position.latitude)
     .then(lat1 => console.log(lat1))
-    await sleep(5000);
+    var time = setInterval(demo, 5000);
     fetch ("http://api.open-notify.org/iss-now.json")
     .then(response => response.json())
     .then(json => json.iss_position.latitude)
     .then(lat2 => console.log(lat2))
+    clearInterval(time);
    }
    demo ();
-   async function demo2() {
+   function demo2() {
     fetch ("http://api.open-notify.org/iss-now.json")
     .then(response => response.json())
     .then(json => json.iss_position.longitude)
     .then(lon1 => console.log(lon1));
-    await sleep(5000);
+    var time2 = setInterval(demo2, 5000);
     fetch ("http://api.open-notify.org/iss-now.json")
     .then(response => response.json())
     .then(json => json.iss_position.longitude)
     .then(lon2 => console.log(lon2))
+    clearInterval(time2);
    }
    demo2();
+
+
 
   function distance(lat1, lon1, lat2, lon2, unit) {
 	if ((lat1 == lat2) && (lon1 == lon2)) {
