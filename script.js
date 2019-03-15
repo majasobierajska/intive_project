@@ -1,16 +1,36 @@
-
-fetch ("http://api.open-notify.org/iss-now.json")
-.then(response => response.json())
-.then(json => [json.iss_position.latitude, json.iss_position.longitude])
-.then(geo1 => console.log(geo1));
-const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
-sleep(5000)
-.then (fetch ("http://api.open-notify.org/iss-now.json")
-.then(response => response.json())
-.then(json => [json.iss_position.latitude, json.iss_position.longitude])
-.then(geo2 => console.log(geo2)));
+  
+  async function demo() {
+    fetch ("http://api.open-notify.org/iss-now.json")
+    .then(response => response.json())
+    .then(json => [json.iss_position.latitude, json.iss_position.longitude])
+    .then(geo1 => console.log(geo1));
+    await sleep(10000);
+    fetch ("http://api.open-notify.org/iss-now.json")
+    .then(response => response.json())
+    .then(json => [json.iss_position.latitude, json.iss_position.longitude])
+    .then(geo2 => console.log(geo2));
+  }
+  
+  demo();
 
 
-//fetch - > 5s sleep -> fetch
+
+
+// fetch ("http://api.open-notify.org/iss-now.json")
+// .then(response => response.json())
+// .then(json => [json.iss_position.latitude, json.iss_position.longitude])
+// .then(geo1 => console.log(geo1));
+// const sleep = (milliseconds) => {
+//     return new Promise(resolve => setTimeout(resolve, milliseconds))
+//   }
+// sleep(5000)
+// .then (fetch ("http://api.open-notify.org/iss-now.json")
+// .then(response => response.json())
+// .then(json => [json.iss_position.latitude, json.iss_position.longitude])
+// .then(geo2 => console.log(geo2)));
+
+
+// //fetch - > 5s sleep -> fetch
